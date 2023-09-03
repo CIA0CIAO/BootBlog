@@ -10,61 +10,34 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 /**
- * 文章表
- * @TableName article
+ * 分类表
+ * @TableName category
  */
-@TableName(value ="article")
+@TableName(value ="category")
 @Data//生成getter,setter等函数
 @NoArgsConstructor //生成无参构造函数
 @AllArgsConstructor //生成全参数构造函数
-@Accessors(chain = true)//生成链式调用
-public class Article implements Serializable {
+public class Category implements Serializable {
     @TableId(type = IdType.AUTO)
     private Long id;
     /**
-     * 标题
+     * 分类名
      */
-    private String title;
+    private String name;
     /**
-     * 文章内容
+     * 父分类id，如果没有父分类为-1
      */
-    private String content;
+    private Long pid;
     /**
-     * 文章摘要
+     * 描述
      */
-    private String summary;
+    private String description;
     /**
-     * 所属分类id
-     */
-    private Long categoryId;
-    /**
-     * 所属分类名称
-     */
-    @TableField(exist = false)
-    private String categoryName;
-    /**
-     * 缩略图
-     */
-    private String thumbnail;
-    /**
-     * 是否置顶（0否，1是）
-     */
-    private String isTop;
-    /**
-     * 状态（0已发布，1草稿）
+     * 状态0:正常,1禁用
      */
     private String status;
-    /**
-     *  访问量
-     */
-    private Long viewCount;
-    /**
-     * 是否允许评论 1是，0否
-     */
-    private String isComment;
     private Long createBy;
     private Date createTime;
     private Long updateBy;
@@ -72,7 +45,7 @@ public class Article implements Serializable {
     /**
      * 删除标志（0代表未删除，1代表已删除）
      */
-    private Integer del_flag;
+    private Integer delFlag;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

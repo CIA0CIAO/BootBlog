@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BeanCopyUtils {
-    //私有的构造方法，表明该类不能直接new出来
+    //私有的构造方法，防止直接实例化工具类
     private BeanCopyUtils() {
     }
 
