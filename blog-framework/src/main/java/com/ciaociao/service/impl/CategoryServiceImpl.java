@@ -7,7 +7,7 @@ import com.ciaociao.mapper.CategoryMapper;
 import com.ciaociao.model.ResponseResult;
 import com.ciaociao.model.domain.Article;
 import com.ciaociao.model.domain.Category;
-import com.ciaociao.model.vo.CategoryVo;
+import com.ciaociao.model.vo.CategoryVO;
 import com.ciaociao.service.ArticleService;
 import com.ciaociao.service.CategoryService;
 import com.ciaociao.utils.BeanCopyUtils;
@@ -43,8 +43,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                 .filter(category -> SystemConstants.CATEGORY_STATUS_NORMAL.equals(category.getStatus()))
                 .collect(Collectors.toList());
         //封装vo
-        List<CategoryVo> categoryVoList = BeanCopyUtils.copyBeanList(normalCategoryList, CategoryVo.class);
-        return ResponseResult.okResult(categoryVoList) ;
+        List<CategoryVO> categoryVOList = BeanCopyUtils.copyBeanList(normalCategoryList, CategoryVO.class);
+        return ResponseResult.okResult(categoryVOList) ;
     }
 }
 

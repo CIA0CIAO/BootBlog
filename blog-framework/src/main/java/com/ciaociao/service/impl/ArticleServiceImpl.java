@@ -8,18 +8,16 @@ import com.ciaociao.mapper.ArticleMapper;
 import com.ciaociao.model.ResponseResult;
 import com.ciaociao.model.domain.Article;
 import com.ciaociao.model.domain.Category;
-import com.ciaociao.model.vo.ArticleDetailVo;
-import com.ciaociao.model.vo.ArticleListVo;
-import com.ciaociao.model.vo.HotArticleVo;
-import com.ciaociao.model.vo.PageVo;
+import com.ciaociao.model.vo.ArticleDetailVO;
+import com.ciaociao.model.vo.ArticleListVO;
+import com.ciaociao.model.vo.HotArticleVO;
+import com.ciaociao.model.vo.PageVO;
 import com.ciaociao.service.ArticleService;
 import com.ciaociao.service.CategoryService;
 import com.ciaociao.utils.BeanCopyUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,8 +45,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 //            BeanUtils.copyProperties(article,hotArticleVo);
 //            hotArticleVoList.add(hotArticleVo);
 //        }
-        List<HotArticleVo> hotArticleVoList = BeanCopyUtils.copyBeanList(articleList, HotArticleVo.class);
-        return ResponseResult.okResult(hotArticleVoList);
+        List<HotArticleVO> hotArticleVOList = BeanCopyUtils.copyBeanList(articleList, HotArticleVO.class);
+        return ResponseResult.okResult(hotArticleVOList);
     }
 
     @Override
@@ -82,8 +80,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 .map(article -> article.setCategoryName(categoryService.getById(article.getCategoryId()).getName()))
                 .collect(Collectors.toList());
         //封装vo
-        List<ArticleListVo> articleListVoList = BeanCopyUtils.copyBeanList(page.getRecords(), ArticleListVo.class);
-        PageVo pageVo = new PageVo(articleListVoList, page.getTotal());
+        List<ArticleListVO> articleListVoList = BeanCopyUtils.copyBeanList(page.getRecords(), ArticleListVO.class);
+        PageVO pageVo = new PageVO(articleListVoList, page.getTotal());
         return ResponseResult.okResult(pageVo);
     }
 
@@ -92,7 +90,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         //根据id查询文章
         Article article = getById(id);
         //转换成VO
-        ArticleDetailVo articleDetailVo = BeanCopyUtils.copyBean(article, ArticleDetailVo.class);
+        ArticleDetailVO articleDetailVo = BeanCopyUtils.copyBean(article, ArticleDetailVO.class);
         //查询分类id查询分类名称
         Category category = categoryService.getById(article.getCategoryId());
         if(category != null){

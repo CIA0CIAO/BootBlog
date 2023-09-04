@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleDetailVo {
+public class ArticleDetailVO {
     private Long id;
     //标题
     private String title;
